@@ -1,7 +1,20 @@
 <script setup>
   import { computed, ref, defineProps } from 'vue';
 
-  const props = defineProps(['title']);
+  const props = defineProps({
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      default: 'Conteúdo da caixa de expansão',
+    },
+    qty: {
+      type:Number,
+      default: 1,
+    }
+  });
 
   const showContent = ref(false);
   const buttonText = computed(() =>
@@ -15,7 +28,7 @@
     <button @click="showContent=!showContent">{{buttonText}}</button>
     <div v-if="showContent" class="expand-box">
       <h1>{{ props.title }}</h1>
-      <p>Conteúdo da caixa de expansão.</p>
+      <p>{{ props.content }}</p>
     </div>
     
   </div>
